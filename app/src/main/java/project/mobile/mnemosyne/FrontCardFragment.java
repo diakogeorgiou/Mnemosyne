@@ -1,6 +1,7 @@
 package project.mobile.mnemosyne;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -90,6 +91,10 @@ public class FrontCardFragment extends Fragment {
                             //Swipe right to left
                             if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                //Play sound
+                                MediaPlayer mPlayer = MediaPlayer.create(getActivity(), R.raw.swipe);
+                                mPlayer.start();
+
                                 //Add previous card fragment
                                 FrontCardFragment frontCardFragment = new FrontCardFragment();
 
@@ -100,6 +105,10 @@ public class FrontCardFragment extends Fragment {
                                 //Swipe from left to right
                             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                //Play sound
+                                MediaPlayer mPlayer = MediaPlayer.create(getActivity(), R.raw.swipe);
+                                mPlayer.start();
+
                                 //Add next card fragment
                                 FrontCardFragment frontCardFragment = new FrontCardFragment();
 
@@ -117,6 +126,11 @@ public class FrontCardFragment extends Fragment {
 
                     @Override
                     public boolean onSingleTapUp(MotionEvent e) {
+                        //Play sound
+                        MediaPlayer mPlayer = MediaPlayer.create(getActivity(), R.raw.flip);
+                        mPlayer.start();
+
+                        //Flip the card
                         BackCardFragment backCardFragment = new BackCardFragment();
 
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -143,6 +157,9 @@ public class FrontCardFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void playFlipSound() {
     }
 
     @Override
