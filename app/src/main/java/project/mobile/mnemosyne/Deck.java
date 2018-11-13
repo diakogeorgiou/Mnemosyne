@@ -2,12 +2,12 @@ package project.mobile.mnemosyne;
 
 public class Deck {
 
-    private Integer ai = 10; // An initializer for the array can and will be changed to our needs.
+    private Integer ai = 0; // An initializer for the array can and will be changed to our needs.
     private String title; // Deck's Title.
     private String desc; // Decks's Description.
     private Card[] useableDeck = new Card[ai];
 
-    public Deck (String title, String desc, Integer ai, Card[] usableDeck){
+    public Deck (String title, String desc, Integer ai, Card[] usableDeck) {
         this.title = title;
         this.desc = desc;
         this.ai = ai;
@@ -15,8 +15,8 @@ public class Deck {
     }
 
 
-    /*
-    Feed cards to deck, re-initialize the ai constant to have the proper length for the array.
-     */
+
+
+
 
 }
