@@ -45,7 +45,7 @@
         android:id="@+id/btnTakePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="12dp"
         android:text="Take Picture"
         app:layout_constraintStart_toEndOf="@+id/btnSaveUser"
         app:layout_constraintTop_toTopOf="@+id/btnSaveUser" />
