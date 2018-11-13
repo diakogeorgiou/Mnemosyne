@@ -18,6 +18,35 @@ public class DBAdapter {
             "  [password] NVARCHAR NOT NULL, \n" +
             "  [date_of_birth] DATETIME);";
 
+    private static final String tableDecks = "CREATE TABLE [decks](\n" +
+            "  [did] INTEGER PRIMARY KEY AUTOINCREMENT, \n" + //Deck's Unique ID.
+            "  [cid] INTEGER FOREIGN KEY REFERENCES tableCards [cid] ON UPDATE CASCADE ON DELETE CASCADE, \n" + //Card's Unique ID.
+            "  [uid] INTEGER FOREIGN KEY, REFERENCES tableUsers [_id] ON DELETE CASCADE;);";
+
+    private static final String tableCards = "CREATE TABLE [cards](\n" +
+            "  [cid] INTEGER PRIMARY KEY AUTOINCREMENT, \n" + //Card's Unique ID.
+            "  [ftext] NVARCHAR, \n" + //Front Text of a card (A part of the FrontCardFragment).
+            "  [fmedia] NVARCHAR, \n" + //Front Media of a card (B part of the FrontCardFragment).
+            "  [btext] NVARCHAR, \n" + //Back Text of a card (A part of the BackCardFragment).
+            "  [bmedia] NVARCHAR, \n" + //Back Media of a card (B part of the BackCardFragment).
+            "  [nexttostudy] DATETIME, \n" + //This field holds the 'when this card will be shown again'.
+            "  [ncard] INTEGER DEFAULT 1, \n" + // This integer acts as a flag to show if a card is shown for the first time.
+            "  [bcard] INTEGER DEFAULT 0);"; //Bury this card to review it once all new cards are done. Once all cards are done All buried cards are being casted in a method as new cards.
+
+    private static final String tableSessions = "CREATE TABLE [sessions] (\n" +
+            "  [sid] INTEGER PRIMARY KEY AUTOINCREMENT, \n" + //Session's Unique ID.
+            "  [did] INTEGER FOREIGN KEY REFERENCES tableDecks [did], \n" + //Point to decks' id.
+            "  [cid] INTEGER FOREIGN KEY REFERENCES tableCards [cid], \n" + //Point to cards' id.
+            "  [ncards] INTEGER, \n" + // This holds the user's preference in how many NEW cards wants to study.
+            "  [rcards] INTEGER, \n" + // This holds the user's preference in how many REVISION cards wants to study.
+            "  [starttime] INTEGER NOT NULL, \n" + // This holds the start time of the session.
+            "  [endtime] INTEGER NOT NULL, \n" + // The end time of the session.
+            "  [efficiency] INTEGER);"; // X cards (new + old) over Y time (endtime - start time). STUDY EFFICIENCY = CARDS/TIME
+
+
+
+
+
     private final Context context;
 
     private DatabaseHelper DBHelper;
@@ -167,6 +196,9 @@ public class DBAdapter {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(tableUsers);
+            db.execSQL(tableDecks);
+            db.execSQL(tableCards);
+            db.execSQL(tableSessions);
         }
 
         @Override

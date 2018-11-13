@@ -32,12 +32,15 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.devs);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto","mnemosyneDevTeam@uws.com", null));
+                intent.putExtra(Intent.EXTRA_SUBJECT, "What is your inquiry?");
+                intent.putExtra(Intent.EXTRA_TEXT, "Please, give us your feedback!");
+                startActivity(Intent.createChooser(intent, "Choose an Email client :"));
             }
         });
 
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
                 startActivityForResult(cameraIntent, 1001);
             }
         });
+
     }
 
     @Override
