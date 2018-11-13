@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         //Test data example
         Deck deck1 = new Deck("Test deck", "This is a test desk");
         Deck deck2 = new Deck("Another Test deck", "This is a tottaly different test deck");
@@ -51,11 +52,8 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto","mnemosyneDevTeam@uws.com", null));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "What is your inquiry?");
-                intent.putExtra(Intent.EXTRA_TEXT, "Please, give us your feedback!");
-                startActivity(Intent.createChooser(intent, "Choose an Email client :"));
+                Intent go = new Intent(this, DeckHolder.class);
+                startActivity(go);
             }
         });
 
