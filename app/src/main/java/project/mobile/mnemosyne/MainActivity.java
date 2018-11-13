@@ -34,14 +34,18 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
 
         //Test data example
         Deck deck1 = new Deck("Test deck", "This is a test desk");
+        Deck deck2 = new Deck("Another Test deck", "This is a tottaly different test deck");
 
         //Card 1
         Card testCard = new Card("Question 1", null, "Answer 1", null, -1);
         deck1.addCardInDeck(testCard);
+        deck2.addCardInDeck(testCard);
 
         //Card 2
         testCard = new Card("Question 2", null, "Answer 2", null, -1);
         deck1.addCardInDeck(testCard);
+        deck2.addCardInDeck(testCard);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.devs);
         fab.setOnClickListener(new View.OnClickListener() {
