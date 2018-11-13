@@ -32,6 +32,17 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Test data example
+        Deck deck1 = new Deck("Test deck", "This is a test desk");
+
+        //Card 1
+        Card testCard = new Card("Question 1", null, "Answer 1", null, -1);
+        deck1.addCardInDeck(testCard);
+
+        //Card 2
+        testCard = new Card("Question 2", null, "Answer 2", null, -1);
+        deck1.addCardInDeck(testCard);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.devs);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
                 startActivityForResult(cameraIntent, 1001);
             }
         });
-
     }
 
     @Override

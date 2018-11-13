@@ -1,22 +1,46 @@
 package project.mobile.mnemosyne;
 
-public class Deck {
+import java.util.ArrayList;
 
-    private Integer ai = 10; // An initializer for the array can and will be changed to our needs.
+public class Deck {
     private String title; // Deck's Title.
     private String desc; // Decks's Description.
-    private Card[] useableDeck = new Card[ai];
+    ArrayList<Card> cards; //Cards in deck
 
-    public Deck (String title, String desc, Integer ai, Card[] usableDeck){
+    public Deck (String title, String desc){
         this.title = title;
         this.desc = desc;
-        this.ai = ai;
-        this.useableDeck = usableDeck;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
-    /*
-    Feed cards to deck, re-initialize the ai constant to have the proper length for the array.
-     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void addCardInDeck(Card card) {
+        if (this.cards == null) {
+            cards = new ArrayList<>();
+        }
+        cards.add(card);
+    }
 
 }
