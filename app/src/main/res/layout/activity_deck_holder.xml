@@ -6,35 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".DeckHolder">
 
-    <LinearLayout
-        android:id="@+id/deckList"
+    <ListView
+        android:id="@+id/DecksList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@drawable/splash_screen" />
 
-        <TextView
-            android:id="@+id/deckDesc1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"/>
-
-        <TextView
-            android:id="@+id/deckTitle1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left" />
-
-        <TextView
-            android:id="@+id/deckTitle2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"/>
-
-        <TextView
-            android:id="@+id/deckDesc2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"/>
-
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
