@@ -6,12 +6,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,50 +20,22 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity implements FrontCardFragment.OnFragmentInteractionListener, BackCardFragment.OnFragmentInteractionListener {
+    //Current deck holder
+    private Deck currentDeck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-
-        //Test data example
-        Deck deck1 = new Deck("Brain Anatomy", "Basic brain parts anatomy cramming");
-        //Deck deck2 = new Deck("Know your Toons!", "Fun brain teaser to test your cartoon,game,anime character trivia");
-
-        //Add cards for the Brain Anatomy flashcards.
-        Card testCard = new Card("Name this brain part", null, "Cerebral Cortex Definition...", null, -1);
-        deck1.addCardInDeck(testCard);
-        /*
-        testCard = new Card("How is this area called?", "insert app>src>main>res>raw>baGraphics>frontallobeQ.png>>", "Frontal Lobe Definition...", "insert app>src>main>res>raw>baGraphics>frontallobeA.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Recall this brain part.", "insert app>src>main>res>raw>baGraphics>hypothalamusQ.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>hypothalamusA.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the part!", "insert app>src>main>res>raw>baGraphics>temporallobeQ.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>temporallobeA.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the brain area", "insert app>src>main>res>raw>baGraphics>*Q.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>*A.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the brain area", "insert app>src>main>res>raw>baGraphics>*Q.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>*A.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the brain area", "insert app>src>main>res>raw>baGraphics>*Q.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>*A.png", -1);
-        deck1.addCardInDeck(testCard);
-        */
-
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.devs);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Tried to go to activity_deck_holder.xml however, it does not recognize the DeckHolder.class
-               // Intent go = new Intent(this, DeckHolder.class);
-               // startActivity(go);
-            }
-        });
+        //Get current deck
+        currentDeck = (Deck) getIntent().getExtras().getSerializable("deck");
 
         //Add front card fragment to layout
+        getIntent().putExtra("deck", currentDeck);
+
         FrontCardFragment frontCardFragment = new FrontCardFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frameLayout, frontCardFragment);

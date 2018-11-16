@@ -11,7 +11,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, DeckHolder.class);
         SystemClock.sleep(3000); //Added a few extra seconds to "sell" the logo (G).
         startActivity(intent);
         finish();

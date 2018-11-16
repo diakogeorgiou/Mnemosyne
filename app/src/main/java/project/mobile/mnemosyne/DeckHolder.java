@@ -1,50 +1,99 @@
 package project.mobile.mnemosyne;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.List;
+import org.json.JSONObject;
 
 public class DeckHolder extends AppCompatActivity {
-
+    ListView decksListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_holder);
 
-/*
-        //Test data example
-        Deck deck1 = new Deck("Brain Anatomy", "Basic brain parts anatomy cramming");
-        //Deck deck2 = new Deck("Know your Toons!", "Fun brain teaser to test your cartoon,game,anime character trivia");
+        decksListView = findViewById(R.id.decksList);
+        DeckListAdapter deckListAdapter = new DeckListAdapter(DeckHolder.this, Data.getInstance().getDecks());
+        decksListView.setAdapter(deckListAdapter);
 
-        //Add cards for the Brain Anatomy flashcards.
-        Card testCard = new Card("Name this brain part", "insert app>src>main>res>raw>baGraphics>cerebralcortexQ.png>>", "Cerebral Cortex Definition...", "insert app>src>main>res>raw>baGraphics>cerebralcortexA.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("How is this area called?", "insert app>src>main>res>raw>baGraphics>frontallobeQ.png>>", "Frontal Lobe Definition...", "insert app>src>main>res>raw>baGraphics>frontallobeA.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Recall this brain part.", "insert app>src>main>res>raw>baGraphics>hypothalamusQ.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>hypothalamusA.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the part!", "insert app>src>main>res>raw>baGraphics>temporallobeQ.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>temporallobeA.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the brain area", "insert app>src>main>res>raw>baGraphics>*Q.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>*A.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the brain area", "insert app>src>main>res>raw>baGraphics>*Q.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>*A.png", -1);
-        deck1.addCardInDeck(testCard);
-        testCard = new Card("Name the brain area", "insert app>src>main>res>raw>baGraphics>*Q.png>>", "Definition...", "insert app>src>main>res>raw>baGraphics>*A.png", -1);
-        deck1.addCardInDeck(testCard);
+        decksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent mainTest = new Intent(DeckHolder.this, MainActivity.class);
 
-        ListAdapter theAdapter = new ArrayAdapter<Deck>(this, android.R.layout.simple_list_item_2, (List<Deck>) deck1);
+                //Pass current deck to activity
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("deck", Data.getInstance().getDecks().get(position));
+                mainTest.putExtras(bundle);
+                startActivity(mainTest);
+            }
+        });
 
-        ListView theListView = (ListView) findViewById(R.id.DecksList);
+        //Enable context menu on long press
+        registerForContextMenu(decksListView);
 
-        theListView.setAdapter(theAdapter);
-        */
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newDeck = new Intent(DeckHolder.this, NewDeckActivity.class);
+                startActivity(newDeck);
+            }
+        });
+    }
 
+    //Create the context menu
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = DeckHolder.this.getMenuInflater();
+        inflater.inflate(R.menu.deckholder_context_menu, menu);
+    }
 
+    //Context menu selection
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+                .getMenuInfo();
+
+        switch (item.getItemId()) {
+            case R.id.mn_delete:
+                //Delete Deck
+                //Show alert dialog
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle("Confirmation")
+                        .setIcon(R.mipmap.ic_launcher_round)
+                        .setMessage("Are you sure you want to delete this deck ?")
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Delete deck
+                                Data.getInstance().deleteDeck(Data.getInstance().getDecks().get(info.position));
+                                //Refresh list
+                                DeckListAdapter deckListAdapter = new DeckListAdapter(DeckHolder.this, Data.getInstance().getDecks());
+                                decksListView.setAdapter(deckListAdapter);
+
+                                Toast.makeText(DeckHolder.this, "Deck successfully deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

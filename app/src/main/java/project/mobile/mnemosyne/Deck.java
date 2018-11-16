@@ -1,15 +1,20 @@
 package project.mobile.mnemosyne;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Deck {
+public class Deck implements Serializable {
     private String title; // Deck's Title.
     private String desc; // Decks's Description.
-    ArrayList<Card> cards; //Cards in deck
+    private ArrayList<Card> cards; //Cards in deck
 
-    public Deck (String title, String desc){
+    private int currentCard;
+
+    public Deck(String title, String desc) {
         this.title = title;
         this.desc = desc;
+
+        this.currentCard = 0;
     }
 
     public String getTitle() {
@@ -43,4 +48,25 @@ public class Deck {
         cards.add(card);
     }
 
+    public Card getCurrentCard() {
+        return cards.get(currentCard);
+    }
+
+    public boolean gotoNextCard() {
+        if (currentCard < cards.size() - 1) {
+            currentCard++;
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean gotoPreviousCard() {
+        if (currentCard > 0) {
+            currentCard--;
+            return true;
+        }
+
+        return false;
+    }
 }

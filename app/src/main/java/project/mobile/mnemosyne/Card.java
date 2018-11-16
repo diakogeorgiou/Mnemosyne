@@ -1,6 +1,8 @@
 package project.mobile.mnemosyne;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
 
     private String ftext; // Front Text field (question) can be edited.
     private String fmedia; // Optional field import pictures or camera.

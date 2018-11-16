@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -69,12 +71,26 @@ public class FrontCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_front_card, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_card, container, false);
 
         float scale = getActivity().getResources().getDisplayMetrics().density;
         rootView.setCameraDistance(8000 * scale);
 
-        CardView card = rootView.findViewById(R.id.cardFront);
+        //Get current deck
+        final Deck currentDeck = (Deck) getActivity().getIntent().getSerializableExtra("deck");
+
+        //Set card text fields and picture
+        //Get current card
+        Card currentCard = currentDeck.getCurrentCard();
+
+        //Text
+        TextView cardText = rootView.findViewById(R.id.cardText);
+        cardText.setText(currentCard.getFtext());
+
+        //Picture
+        ImageView cardImage = rootView.findViewById(R.id.cardImage);
+
+        cardImage.setImageResource(getResources().getIdentifier(currentCard.getFmedia(), "drawable", getContext().getPackageName()));
 
         //Gesture handle
         final GestureDetector gesture = new GestureDetector(getActivity(),
@@ -91,6 +107,10 @@ public class FrontCardFragment extends Fragment {
                             //Swipe right to left
                             if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                //Check if next card is available
+                                if (!currentDeck.gotoNextCard())
+                                    return false;
+
                                 //Play sound
                                 MediaPlayer mPlayer = MediaPlayer.create(getActivity(), R.raw.swipe);
                                 mPlayer.start();
@@ -105,6 +125,10 @@ public class FrontCardFragment extends Fragment {
                                 //Swipe from left to right
                             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                //Check if next card is available
+                                if (!currentDeck.gotoPreviousCard())
+                                    return false;
+
                                 //Play sound
                                 MediaPlayer mPlayer = MediaPlayer.create(getActivity(), R.raw.swipe);
                                 mPlayer.start();
@@ -122,7 +146,9 @@ public class FrontCardFragment extends Fragment {
                         }
 
                         return super.onFling(e1, e2, velocityX, velocityY);
-                    };
+                    }
+
+                    ;
 
                     @Override
                     public boolean onSingleTapUp(MotionEvent e) {
