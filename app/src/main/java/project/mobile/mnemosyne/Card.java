@@ -10,13 +10,15 @@ public class Card implements Serializable {
     private String bmedia; // (Optional Supplement) Back Media.
     private Integer nexttostudy; // This holds a value of "which card needs to be revised more often".
     private Boolean suspended; // Optional suspension of the card. Suspended cards will be ignored till there are no more new cards to be studied.
+    private Boolean known; // Indicates if you know or not this question
 
-    public Card (String ftext, String fmedia, String btext, String bmedia, Integer nexttostudy) {
+    public Card (String ftext, String fmedia, String btext, String bmedia) {
         this.ftext = ftext;
         this.fmedia = fmedia;
         this.btext = btext;
         this.bmedia = bmedia;
         this.nexttostudy = nexttostudy;
+        this.known = null;
     }
 
     public void suspendCard() {
@@ -67,5 +69,11 @@ public class Card implements Serializable {
         this.nexttostudy = nexttostudy;
     }
 
+    public Boolean isKnown() {
+        return known;
+    }
 
+    public void setKnown(boolean known) {
+        this.known = known;
+    }
 }

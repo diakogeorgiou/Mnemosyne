@@ -1,6 +1,7 @@
 package project.mobile.mnemosyne;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -91,6 +92,16 @@ public class FrontCardFragment extends Fragment {
         ImageView cardImage = rootView.findViewById(R.id.cardImage);
 
         cardImage.setImageResource(getResources().getIdentifier(currentCard.getFmedia(), "drawable", getContext().getPackageName()));
+
+        //Set Deck Counter
+        TextView txtDeckCounter = getActivity().findViewById(R.id.txtDeckCounter);
+        txtDeckCounter.setText(String.valueOf(currentDeck.getCurrentCardNumber()) + '/' + String.valueOf(currentDeck.getTotalNumberOfCards()));
+
+        //Fade the card if is rated
+        if (currentCard.isKnown() != null) {
+            CardView cardView = rootView.findViewById(R.id.cardFront);
+            cardView.setAlpha(0.4f);
+        }
 
         //Gesture handle
         final GestureDetector gesture = new GestureDetector(getActivity(),

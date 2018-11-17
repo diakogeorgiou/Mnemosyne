@@ -8,13 +8,13 @@ public class Deck implements Serializable {
     private String desc; // Decks's Description.
     private ArrayList<Card> cards; //Cards in deck
 
-    private int currentCard;
+    private int currentCardNumber;
 
     public Deck(String title, String desc) {
         this.title = title;
         this.desc = desc;
 
-        this.currentCard = 0;
+        this.currentCardNumber = 0;
     }
 
     public String getTitle() {
@@ -48,13 +48,21 @@ public class Deck implements Serializable {
         cards.add(card);
     }
 
+    public int getCurrentCardNumber() {
+        return currentCardNumber + 1;
+    }
+
+    public int getTotalNumberOfCards() {
+        return cards.size();
+    }
+
     public Card getCurrentCard() {
-        return cards.get(currentCard);
+        return cards.get(currentCardNumber);
     }
 
     public boolean gotoNextCard() {
-        if (currentCard < cards.size() - 1) {
-            currentCard++;
+        if (currentCardNumber < cards.size() - 1) {
+            currentCardNumber++;
             return true;
         }
 
@@ -62,11 +70,33 @@ public class Deck implements Serializable {
     }
 
     public boolean gotoPreviousCard() {
-        if (currentCard > 0) {
-            currentCard--;
+        if (currentCardNumber > 0) {
+            currentCardNumber--;
             return true;
         }
 
         return false;
+    }
+
+    public int getAmountOfKnowCards() {
+        int count = 0;
+        for (Card card : cards) {
+            if (card.isKnown() != null) {
+                if (card.isKnown() == true)
+                    count++;
+            }
+        }
+        return count;
+    }
+
+    public int getAmountOfDontKnowCards() {
+        int count = 0;
+        for (Card card : cards) {
+            if (card.isKnown() != null) {
+                if (card.isKnown() == false)
+                    count++;
+            }
+        }
+        return count;
     }
 }

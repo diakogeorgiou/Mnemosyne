@@ -98,6 +98,12 @@ public class BackCardFragment extends Fragment {
         else
             cardImage.getLayoutParams().height = 0;
 
+        //Fade the card if is rated
+        if (currentCard.isKnown() != null) {
+            CardView cardView = rootView.findViewById(R.id.cardFront);
+            cardView.setAlpha(0.4f);
+        }
+
         //Gesture handle
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
