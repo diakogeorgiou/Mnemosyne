@@ -58,19 +58,19 @@ public class Data {
 
         //Deck 3
         Deck deck3 = new Deck("Pokemon challenge", "Can you name all Pokemons ?");
-        testCard = new Card("Name this pokemon figure", "pikachu", "Pikachu", null);
+        testCard = new Card("Most popular lighting rat?", "pikachu", "Pikachu", "pikachu");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "vulpix", "Vulpix", null);
+        testCard = new Card("Name this pokemon figure", "vulpix", "Vulpix", "vulpix");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "ponyta", "Ponyta", null);
+        testCard = new Card("Name this pokemon figure", "ponyta", "Ponyta", "ponyta");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "drowzee", "Drowzee", null);
+        testCard = new Card("Name this pokemon figure", "drowzee", "Drowzee", "drowzee");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "lapras", "Lapras", null);
+        testCard = new Card("Name this pokemon figure", "lapras", "Lapras", "Lapras");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "vaporeon", "Vaporeon", null);
+        testCard = new Card("Name this pokemon figure", "vaporeon", "Vaporeon", "vaporeon");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "articuno", "Articuno", null);
+        testCard = new Card("Name this pokemon figure", "articuno", "Articuno", "articuno");
         deck3.addCardInDeck(testCard);
         testCard = new Card("Name this pokemon figure", "mewtwo", "Mewtwo", null);
         deck3.addCardInDeck(testCard);

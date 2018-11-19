@@ -2,4 +2,14 @@
     <string name="app_name">Mnemosyne</string>
     <string name="action_settings">Settings</string>
     <string name="famous_cartoon_character">Famous cartoon character</string>
+    <string name="new_deck">New Deck</string>
+    <string name="deckTitle">Deck\'s Title</string>
+    <string name="deckDesc">Deck\'s Description......</string>
+    <string name="submit">Submit</string>
+    <string name="sideA">Side A (Question Side)</string>
+    <string name="sideB">Side B (Answer Side)</string>
+    <string name="question">Type your question</string>
+    <string name="answer">Type your answer</string>
+    <string name="photo">Take a photo</string>
+    <string name="add">Add Card</string>
 </resources>
