@@ -14,6 +14,7 @@ public class NewDeckActivity extends AppCompatActivity {
     private EditText usersTitle;
     private EditText usersDesc;
     private Button usersSubmit;
+    public Deck push;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +28,11 @@ public class NewDeckActivity extends AppCompatActivity {
         usersSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 title = usersTitle.getText().toString();
                 desc = usersDesc.getText().toString();
 
-                showToast(desc);
+                push = new Deck(title,desc); //Name will probably change.
                 addNewCard();
             }
         });

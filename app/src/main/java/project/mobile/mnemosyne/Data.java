@@ -92,12 +92,6 @@ public class Data {
         decks.add(deck1);
         decks.add(deck2);
         decks.add(deck3);
-        decks.add(deck2);
-        decks.add(deck1);
-        decks.add(deck3);
-        decks.add(deck2);
-        decks.add(deck1);
-        decks.add(deck2);
-        decks.add(deck3);
+
     }
 }

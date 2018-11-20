@@ -23,22 +23,22 @@
     <Button
         android:id="@+id/btnKnow"
         android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#FF4F948D"
-        android:text="Know"
+        android:text="Yes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnDontKnow"
         android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#FFEA2721"
-        android:text="Don't know"
+        android:text="No"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -60,7 +60,6 @@
         android:id="@+id/txtKnowNo"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/btnKnow"
@@ -70,7 +69,6 @@
         android:id="@+id/txtDontKnowNo"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/btnDontKnow"
