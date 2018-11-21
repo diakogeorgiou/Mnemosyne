@@ -11,6 +11,7 @@ public class Card implements Serializable {
     private Integer nexttostudy; // This holds a value of "which card needs to be revised more often".
     private Boolean suspended; // Optional suspension of the card. Suspended cards will be ignored till there are no more new cards to be studied.
     private Boolean known; // Indicates if you know or not this question
+    private Boolean externalBitmaps; //Inticates whether the file bitmap files are internal or external
 
     public Card (String ftext, String fmedia, String btext, String bmedia) {
         this.ftext = ftext;
@@ -19,6 +20,7 @@ public class Card implements Serializable {
         this.bmedia = bmedia;
         this.nexttostudy = nexttostudy;
         this.known = null;
+        this.externalBitmaps = false;
     }
 
     public void suspendCard() {
@@ -75,5 +77,13 @@ public class Card implements Serializable {
 
     public void setKnown(boolean known) {
         this.known = known;
+    }
+
+    public Boolean getExternalBitmaps() {
+        return externalBitmaps;
+    }
+
+    public void setExternalBitmaps(Boolean externalBitmaps) {
+        this.externalBitmaps = externalBitmaps;
     }
 }

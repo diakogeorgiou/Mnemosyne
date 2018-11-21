@@ -1,6 +1,8 @@
 package project.mobile.mnemosyne;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -15,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 
 /**
@@ -91,7 +95,35 @@ public class FrontCardFragment extends Fragment {
         //Picture
         ImageView cardImage = rootView.findViewById(R.id.cardImage);
 
-        cardImage.setImageResource(getResources().getIdentifier(currentCard.getFmedia(), "drawable", getContext().getPackageName()));
+        //Remove image if null
+        if (currentCard.getFmedia() != null) {
+            if (currentCard.getExternalBitmaps() == true) {
+                File imgFile = new File(currentCard.getFmedia());
+                if (imgFile.exists()) {
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    cardImage.setImageBitmap(myBitmap);
+                }
+            } else
+                cardImage.setImageResource(getResources().getIdentifier(currentCard.getFmedia(), "drawable", getContext().getPackageName()));
+
+        } else
+            cardImage.getLayoutParams().height = 0;
+
+
+
+
+
+
+//        if (currentCard.getFmedia() != null) {
+//            if (currentCard.getExternalBitmaps() == true) {
+//                File imgFile = new File(currentCard.getFmedia());
+//                if (imgFile.exists()) {
+//                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+//                    cardImage.setImageBitmap(myBitmap);
+//                }
+//            }
+//        } else
+//            cardImage.setImageResource(getResources().getIdentifier(currentCard.getFmedia(), "drawable", getContext().getPackageName()));
 
         //Set Deck Counter
         TextView txtDeckCounter = getActivity().findViewById(R.id.txtDeckCounter);

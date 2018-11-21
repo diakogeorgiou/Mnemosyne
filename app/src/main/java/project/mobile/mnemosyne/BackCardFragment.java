@@ -1,6 +1,8 @@
 package project.mobile.mnemosyne;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 
 /**
@@ -93,10 +97,19 @@ public class BackCardFragment extends Fragment {
         ImageView cardImage = rootView.findViewById(R.id.cardImage);
 
         //Remove image if null
-        if (currentCard.getBmedia() != null)
-            cardImage.setImageResource(getResources().getIdentifier(currentCard.getBmedia(), "drawable", getContext().getPackageName()));
-        else
+        if (currentCard.getBmedia() != null) {
+            if (currentCard.getExternalBitmaps() == true) {
+                File imgFile = new File(currentCard.getBmedia());
+                if (imgFile.exists()) {
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    cardImage.setImageBitmap(myBitmap);
+                }
+            } else
+                cardImage.setImageResource(getResources().getIdentifier(currentCard.getBmedia(), "drawable", getContext().getPackageName()));
+
+        } else
             cardImage.getLayoutParams().height = 0;
+
 
         //Fade the card if is rated
         if (currentCard.isKnown() != null) {

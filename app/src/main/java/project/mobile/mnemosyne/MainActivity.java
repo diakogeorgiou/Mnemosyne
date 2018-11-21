@@ -3,21 +3,11 @@ package project.mobile.mnemosyne;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StrictMode;
-import android.provider.MediaStore;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity implements FrontCardFragment.OnFragmentInteractionListener, BackCardFragment.OnFragmentInteractionListener {
     //Current deck holder
@@ -33,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
 
         txtKnowNo = findViewById(R.id.txtKnowNo);
         txtDontKnowNo = findViewById(R.id.txtDontKnowNo);
-        btnFinish = findViewById(R.id.btnFinish);
+        btnFinish = findViewById(R.id.btnSaveDeck);
 
         //Get current deck
         currentDeck = (Deck) getIntent().getExtras().getSerializable("deck");
@@ -130,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements FrontCardFragment
 //            public void onClick(View v) {
 //                final String dir = Environment.getExternalStorageDirectory() + "/Mnemosyne/";
 //                File newdir = new File(dir);
-//                String file = dir + 1 + ".jpg";
+//                String file = dir + 2 + ".jpg";
 //                File newfile = new File(file);
 //                try {
 //                    newfile.createNewFile();

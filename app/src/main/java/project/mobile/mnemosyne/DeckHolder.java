@@ -44,12 +44,13 @@ public class DeckHolder extends AppCompatActivity {
         //Enable context menu on long press
         registerForContextMenu(decksListView);
 
+        //Add new deck activity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent newDeck = new Intent(DeckHolder.this, NewDeckActivity.class);
-                startActivity(newDeck);
+                startActivityForResult(newDeck, 1002);
             }
         });
     }
@@ -94,6 +95,16 @@ public class DeckHolder extends AppCompatActivity {
                 return true;
             default:
                 return super.onContextItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1002 && resultCode == RESULT_OK) {
+            //Refresh list
+            DeckListAdapter deckListAdapter = new DeckListAdapter(DeckHolder.this, Data.getInstance().getDecks());
+            decksListView.setAdapter(deckListAdapter);
         }
     }
 }

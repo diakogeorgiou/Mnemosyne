@@ -20,6 +20,10 @@ public class Data {
         decks.remove(deck);
     }
 
+    public void addDeck(Deck deck) {
+        decks.add(deck);
+    }
+
     private Data() {
         //Test data example
         Deck deck1 = new Deck("Brain Anatomy", "Basic brain parts anatomy cramming");
