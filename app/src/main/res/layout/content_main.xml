@@ -23,7 +23,7 @@
     <Button
         android:id="@+id/btnKnow"
         android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#FF4F948D"
@@ -34,7 +34,7 @@
     <Button
         android:id="@+id/btnDontKnow"
         android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#FFEA2721"

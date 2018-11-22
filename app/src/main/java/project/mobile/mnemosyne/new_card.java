@@ -33,7 +33,7 @@ public class new_card extends AppCompatActivity {
     private Button usersmediaA;
     private Button btnFinish;
     private Button btnSaveCard;
-//    public String answer, question;
+    //    public String answer, question;
     public Bitmap photoA, photoB;
 
     private String strQuestionImageName, strAnswerImageName;
@@ -79,6 +79,30 @@ public class new_card extends AppCompatActivity {
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 
                 startActivityForResult(cameraIntent, 1);
+            }
+        });
+
+        //Select question image from gallery
+        questionImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(i, 10);
+            }
+        });
+
+        //Select answer image from gallery
+        answerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(i, 11);
             }
         });
 
@@ -129,7 +153,7 @@ public class new_card extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Question
+        //Question camera
         if (requestCode == 0 && resultCode == RESULT_OK) { //Checking the flag "which button was pressed?".
 //            strQuestionImageName = getFileNameFromUri(outputFileUri);
             strQuestionImageName = outputFileUri.getPath();
@@ -138,7 +162,7 @@ public class new_card extends AppCompatActivity {
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 questionImage.setImageBitmap(myBitmap);
             }
-            //Answer
+            //Answer camera
         } else if (requestCode == 1 && resultCode == RESULT_OK) {
             strAnswerImageName = outputFileUri.getPath();
             File imgFile = new File(outputFileUri.getPath());
@@ -147,10 +171,39 @@ public class new_card extends AppCompatActivity {
                 answerImage.setImageBitmap(myBitmap);
             }
         }
-    }
 
-    private void showToast(String text) {
-        Toast.makeText(new_card.this, text, Toast.LENGTH_SHORT).show();
+        //Question image from gallery
+        if (requestCode == 10 && resultCode == RESULT_OK) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            strQuestionImageName = picturePath;
+            questionImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+        }
+
+        if (requestCode == 11 && resultCode == RESULT_OK) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            strAnswerImageName = picturePath;
+            answerImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+        }
     }
 
     private void prepareToSavePicture() {
@@ -175,27 +228,27 @@ public class new_card extends AppCompatActivity {
         StrictMode.setVmPolicy(builder.build());
     }
 
-    public String getFileNameFromUri(Uri uri) {
-        String result = null;
-        if (uri.getScheme().equals("content")) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-        if (result == null) {
-            result = uri.getPath();
-            int cut = result.lastIndexOf('/');
-            if (cut != -1) {
-                result = result.substring(cut + 1);
-            }
-        }
-
-        String strFinal = result.replace(".jpg", "");
-        return strFinal;
-    }
+//    public String getFileNameFromUri(Uri uri) {
+//        String result = null;
+//        if (uri.getScheme().equals("content")) {
+//            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+//            try {
+//                if (cursor != null && cursor.moveToFirst()) {
+//                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+//                }
+//            } finally {
+//                cursor.close();
+//            }
+//        }
+//        if (result == null) {
+//            result = uri.getPath();
+//            int cut = result.lastIndexOf('/');
+//            if (cut != -1) {
+//                result = result.substring(cut + 1);
+//            }
+//        }
+//
+//        String strFinal = result.replace(".jpg", "");
+//        return strFinal;
+//    }
 }

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -110,6 +111,15 @@ public class BackCardFragment extends Fragment {
         } else
             cardImage.getLayoutParams().height = 0;
 
+
+        //Enable buttons after flip
+        Button btnKnow = getActivity().findViewById(R.id.btnKnow);
+        btnKnow.setEnabled(true);
+        btnKnow.setAlpha(1);
+
+        Button btnDontKnow = getActivity().findViewById(R.id.btnDontKnow);
+        btnDontKnow.setEnabled(true);
+        btnDontKnow.setAlpha(1);
 
         //Fade the card if is rated
         if (currentCard.isKnown() != null) {

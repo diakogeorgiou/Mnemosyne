@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -109,10 +110,14 @@ public class FrontCardFragment extends Fragment {
         } else
             cardImage.getLayoutParams().height = 0;
 
+        //Disable buttons before flip
+        Button btnKnow = getActivity().findViewById(R.id.btnKnow);
+        btnKnow.setEnabled(false);
+        btnKnow.setAlpha(.5f);
 
-
-
-
+        Button btnDontKnow = getActivity().findViewById(R.id.btnDontKnow);
+        btnDontKnow.setEnabled(false);
+        btnDontKnow.setAlpha(.5f);
 
 //        if (currentCard.getFmedia() != null) {
 //            if (currentCard.getExternalBitmaps() == true) {
