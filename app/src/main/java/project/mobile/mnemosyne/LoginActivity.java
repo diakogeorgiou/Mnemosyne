@@ -19,19 +19,19 @@ public class LoginActivity extends AppCompatActivity {
     public static final String MY_PREFS_NAME = "UsersFile";
 
     @Override
-    protected  void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Name = (EditText)findViewById(R.id.editName);
-        Password = (EditText)findViewById(R.id.editPassword);
-        Info = (TextView)findViewById(R.id.tvInfo);
-        Login = (Button)findViewById(R.id.btnLogin);
+        Name = (EditText) findViewById(R.id.editName);
+        Password = (EditText) findViewById(R.id.editPassword);
+        Info = (TextView) findViewById(R.id.tvInfo);
+        Login = (Button) findViewById(R.id.btnLogin);
         Register = (Button) findViewById(R.id.btnAddUser);
 
-        Login.setOnClickListener(new View.OnClickListener(){
+        Login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 validate(Name.getText().toString(), Password.getText().toString());
             }
         });
@@ -46,37 +46,34 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void validate(String userName, String userPassword){
+    private void validate(String userName, String userPassword) {
 
         //SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         SharedPreferences.Editor editor = prefs.edit();
 
         String user = prefs.getString("username", "No username defined");
-        String  pass = prefs.getString("password", "No password defined");
+        String pass = prefs.getString("password", "No password defined");
 
 
-        if(TextUtils.isEmpty(userName) &&  TextUtils.isEmpty(userPassword)) {
+        if (TextUtils.isEmpty(userName) && TextUtils.isEmpty(userPassword)) {
             Info.setText("no user exists");
 
 
-        }else if (user.equals(userName) && pass.equals(userPassword)) {
+        } else if (user.equals(userName) && pass.equals(userPassword)) {
 
+            finish();
             Intent intent = new Intent(LoginActivity.this, DeckHolder.class);
             startActivity(intent);
 
-        }else{
+        } else {
             Info.setText("incorrect credentials");
 
 
         }
 
 
-
-
     }
-
-
 
 
 }

@@ -24,11 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
 
-
-
-
-
-
         newName = (EditText) findViewById(R.id.addUsername);
         newPassword = (EditText) findViewById(R.id.addPassword);
         Info = (TextView) findViewById(R.id.tvInfo);
@@ -45,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

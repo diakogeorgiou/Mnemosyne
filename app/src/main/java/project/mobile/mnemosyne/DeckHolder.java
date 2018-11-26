@@ -1,8 +1,12 @@
 package project.mobile.mnemosyne;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +27,20 @@ public class DeckHolder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_holder);
+
+
+        //Request permissions
+        if (ContextCompat.checkSelfPermission(DeckHolder.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            ActivityCompat.requestPermissions(DeckHolder.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+            // Permission has already been granted
+        }
 
         decksListView = findViewById(R.id.decksList);
         DeckListAdapter deckListAdapter = new DeckListAdapter(DeckHolder.this, Data.getInstance().getDecks());

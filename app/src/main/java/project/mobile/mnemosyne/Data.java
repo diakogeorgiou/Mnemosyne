@@ -38,25 +38,25 @@ public class Data {
 
         //Deck 2
         Deck deck2 = new Deck("Know your Toons!", "Fun brain teaser to test your cartoon, game, anime character trivia");
-        testCard = new Card("Name this character", "mickey_mouse", "Mickey Mouse", null);
+        testCard = new Card("Name this character", "mickey_mouse", "Mickey Mouse", "mickey_mouse");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "super_mario", "Super Mario", null);
+        testCard = new Card("Name this character", "super_mario", "Super Mario", "super_mario");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "bugs_bunny", "Bugs Bunny", null);
+        testCard = new Card("Name this character", "bugs_bunny", "Bugs Bunny", "bugs_bunny");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "tweety", "Tweety", null);
+        testCard = new Card("Name this character", "tweety", "Tweety", "tweety");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "donald_duck", "Donald Duck", null);
+        testCard = new Card("Name this character", "donald_duck", "Donald Duck", "donal_duck");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "daffy_duck", "Daffy Duck", null);
+        testCard = new Card("Name this character", "daffy_duck", "Daffy Duck", "daffy_duck");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "goofy", "Goofy", null);
+        testCard = new Card("Name this character", "goofy", "Goofy", "goofy");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "peter_griffin", "Peter Griffin", null);
+        testCard = new Card("Name this character", "peter_griffin", "Peter Griffin", "peter_griffin");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "porky_pig", "Porky Pig", null);
+        testCard = new Card("Name this character", "porky_pig", "Porky Pig", "porky_pig");
         deck2.addCardInDeck(testCard);
-        testCard = new Card("Name this character", "elmer_fudd", "Elmer Fudd", null);
+        testCard = new Card("Name this character", "elmer_fudd", "Elmer Fudd", "elmer_fudd");
         deck2.addCardInDeck(testCard);
 
 
@@ -70,21 +70,21 @@ public class Data {
         deck3.addCardInDeck(testCard);
         testCard = new Card("Name this pokemon figure", "drowzee", "Drowzee", "drowzee");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "lapras", "Lapras", "Lapras");
+        testCard = new Card("Name this pokemon figure", "lapras", "Lapras", "lapras");
         deck3.addCardInDeck(testCard);
         testCard = new Card("Name this pokemon figure", "vaporeon", "Vaporeon", "vaporeon");
         deck3.addCardInDeck(testCard);
         testCard = new Card("Name this pokemon figure", "articuno", "Articuno", "articuno");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "mewtwo", "Mewtwo", null);
+        testCard = new Card("Name this pokemon figure", "mewtwo", "Mewtwo", "mewtwo");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "flaaffy", "Flaaffy", null);
+        testCard = new Card("Name this pokemon figure", "flaaffy", "Flaaffy", "flaafy");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "cutiefly", "Cutiefly", null);
+        testCard = new Card("Name this pokemon figure", "cutiefly", "Cutiefly", "cutiefly");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "sawsbuck", "Sawsbuck", null);
+        testCard = new Card("Name this pokemon figure", "sawsbuck", "Sawsbuck", "sawsbuck");
         deck3.addCardInDeck(testCard);
-        testCard = new Card("Name this pokemon figure", "piplup", "Piplup", null);
+        testCard = new Card("Name this pokemon figure", "piplup", "Piplup", "pilpup");
         deck3.addCardInDeck(testCard);
 
 
